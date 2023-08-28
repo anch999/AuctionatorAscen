@@ -169,7 +169,10 @@ function AtrScan:UpdateItemLink (itemLink)
 
 		self.itemTextColor = { 1.0, 1.0, 1.0 };
 
-		self.itemTextColor = ITEM_QUALITY_COLORS[quality]
+		if (quality == 0)	then	self.itemTextColor = { 0.6, 0.6, 0.6 };	end
+		if (quality == 2)	then	self.itemTextColor = { 0.2, 1.0, 0.0 };	end
+		if (quality == 3)	then	self.itemTextColor = { 0.0, 0.5, 1.0 };	end
+		if (quality == 4)	then	self.itemTextColor = { 0.7, 0.3, 1.0 };	end
 	end
 
 end
