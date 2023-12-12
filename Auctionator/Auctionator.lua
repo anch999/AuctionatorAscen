@@ -1933,7 +1933,7 @@ function Atr_StackPriceChangedFunc ()
 		MoneyInputFrame_SetCopper (Atr_ItemPrice,		new_Item_BuyoutPrice);
 		MoneyInputFrame_SetCopper (Atr_StartingPrice,	new_Item_StartPrice * Atr_StackSize());
 	end
-
+	Atr_SetDepositText()
 end
 
 -----------------------------------------
@@ -1951,7 +1951,7 @@ function Atr_ItemPriceChangedFunc ()
 		MoneyInputFrame_SetCopper (Atr_StackPrice, 		new_Item_BuyoutPrice * Atr_StackSize());
 		MoneyInputFrame_SetCopper (Atr_StartingPrice,	new_Item_StartPrice  * Atr_StackSize());
 	end
-
+	Atr_SetDepositText()
 end
 
 -----------------------------------------
@@ -1967,7 +1967,7 @@ function Atr_StackSizeChangedFunc ()
 --	Atr_MemorizeButton:Show();
 
 	gSellPane.UINeedsUpdate = true;
-
+	Atr_SetDepositText()
 end
 
 -----------------------------------------
@@ -2475,13 +2475,13 @@ end
 -----------------------------------------
 
 function Atr_SetDepositText()
-
-	_, auctionCount = Atr_GetSellItemInfo();
+	local _, auctionCount = Atr_GetSellItemInfo();
 
 	if (auctionCount > 0) then
 		local duration = UIDropDownMenu_GetSelectedValue(Atr_Duration);
-
-		local deposit1 = CalculateAuctionDeposit (duration) / auctionCount;
+		local start = MoneyInputFrame_GetCopper(Atr_StartingPrice);
+		local buyout = MoneyInputFrame_GetCopper(Atr_StackPrice);
+		local deposit1 = CalculateAuctionDeposit (duration, auctionCount, start, buyout);
 		local numAuctionString = "";
 		if (Atr_Batch_NumAuctions:GetNumber() > 1) then
 			numAuctionString = "  |cffff55ff x"..Atr_Batch_NumAuctions:GetNumber();
