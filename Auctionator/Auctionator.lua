@@ -2476,12 +2476,11 @@ end
 
 function Atr_SetDepositText()
 	local _, auctionCount = Atr_GetSellItemInfo();
-
 	if (auctionCount > 0) then
 		local duration = UIDropDownMenu_GetSelectedValue(Atr_Duration);
 		local start = MoneyInputFrame_GetCopper(Atr_StartingPrice);
 		local buyout = MoneyInputFrame_GetCopper(Atr_StackPrice);
-		local deposit1 = CalculateAuctionDeposit (duration, 1, start, buyout) / auctionCount;
+		local deposit1 = CalculateAuctionDeposit(duration, 1, start, buyout);
 		local numAuctionString = "";
 		if (Atr_Batch_NumAuctions:GetNumber() > 1) then
 			numAuctionString = "  |cffff55ff x"..Atr_Batch_NumAuctions:GetNumber();
