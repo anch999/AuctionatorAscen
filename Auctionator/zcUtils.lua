@@ -609,7 +609,7 @@ function zc.msg_ex (options, ...)
 	for i = 1, num do
 	
 		local v = select (i, ...);
-
+		local m
 		if		(type(v) == "boolean")	then	m = zc.BoolToString(v);
 		elseif	(type(v) == "table")	then	m = "<table>";
 		elseif	(type(v) == "function")	then	m = "<function>";
